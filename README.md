@@ -1,7 +1,30 @@
-# Tauri + Solid + Typescript
+# Cozy API
 
-This template should help get you started developing with Tauri, Solid and Typescript in Vite.
+Let AI agents interact with your API.
 
-## Recommended IDE Setup
+## Prerequisites
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+Install the following prerequisites:
+
+- [Node.js](https://nodejs.org/)
+- [Rust](https://www.rust-lang.org/)
+
+You can easily install these prerequisites via [mise](https://github.com/mise-rs/mise).
+
+```bash
+mise install
+```
+
+## Usage
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the application locally:
+
+```bash
+npm run tauri dev
+```
