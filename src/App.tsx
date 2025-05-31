@@ -14,8 +14,7 @@ function App() {
 
   return (
     <main class="container">
-      <h1>Welcome to Tauri + Solid</h1>
-
+      <h1 class="text-3xl font-bold underline">Hello world!</h1>
       <div class="row">
         <a href="https://vite.dev" target="_blank">
           <img src="/vite.svg" class="logo vite" alt="Vite logo" />
