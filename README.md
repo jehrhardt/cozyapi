@@ -6,13 +6,14 @@ Let AI agents interact with your API.
 
 Install the following prerequisites:
 
-- [Node.js](https://nodejs.org/)
-- [Rust](https://www.rust-lang.org/)
+- [Rust](https://www.rust-lang.org)
+- [mise](https://mise.jdx.dev)
 
-You can easily install these prerequisites via [mise](https://github.com/mise-rs/mise).
+You can easily install the dependendies:
 
 ```bash
 mise install
+mise setup
 ```
 
 ## Usage
@@ -26,5 +27,5 @@ npm install
 Run the application locally:
 
 ```bash
-npm run tauri dev
+mise run dev
 ```
