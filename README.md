@@ -18,14 +18,14 @@ mise setup
 
 ## Usage
 
-Install dependencies:
-
-```bash
-npm install
-```
-
 Run the application locally:
 
 ```bash
-mise run dev
+mise run dev:app
+```
+
+Run MCP server with inspector:
+
+```bash
+mise run dev:mcp
 ```

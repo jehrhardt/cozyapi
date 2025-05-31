@@ -6,6 +6,10 @@ node = "lts"
 description = "Setup development environment"
 run = "npm install"
 
-[tasks.dev]
+[tasks."dev:app"]
 description = "Start the application in development mode"
 run = "cargo tauri dev"
+
+[tasks."dev:mcp"]
+description = "Start the MCP server in development mode"
+run = "npx @modelcontextprotocol/inspector cargo run -- mcp"
