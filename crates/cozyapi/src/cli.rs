@@ -1,4 +1,5 @@
 use clap::{Parser, Subcommand};
+use cozyapi_config::Config;
 
 #[derive(Parser)]
 #[command(name = "cozyapi")]
@@ -15,13 +16,20 @@ enum Commands {
 
 pub async fn run() {
     let cli = Cli::parse();
-
     match cli.command {
         Some(Commands::Mcp) => {
-            cozyapi_mcp_server::run().await;
+            let config = Config {
+                db_dir: "".to_string(),
+                db_name: "".to_string(),
+            };
+            cozyapi_mcp_server::run(config).await;
         }
         None => {
-            crate::tauri::run();
+            let config = Config {
+                db_dir: "".to_string(),
+                db_name: "".to_string(),
+            };
+            crate::tauri::run(config);
         }
     }
 }

@@ -693,6 +693,7 @@ name = "cozyapi"
 version = "0.1.0"
 dependencies = [
  "clap",
+ "cozyapi_config",
  "cozyapi_mcp_server",
  "serde",
  "serde_json",
@@ -704,9 +705,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "cozyapi_config"
+version = "0.1.0"
+
+[[package]]
 name = "cozyapi_mcp_server"
 version = "0.1.0"
 dependencies = [
+ "cozyapi_config",
  "rmcp",
  "serde",
 ]
