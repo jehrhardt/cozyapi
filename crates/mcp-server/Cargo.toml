@@ -1,9 +1,0 @@
-[package]
-name = "cozyapi_mcp_server"
-version = "0.1.0"
-edition = "2024"
-
-[dependencies]
-cozyapi_config = { path = "../config" }
-rmcp = { version = "0.1.5", features = ["transport-io"] }
-serde = { workspace = true }

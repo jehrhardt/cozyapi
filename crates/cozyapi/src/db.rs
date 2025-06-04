@@ -6,6 +6,7 @@ pub(crate) fn migrations() -> Vec<Migration> {
         description: "create_endpoints_table",
         sql: "create table endpoints (
             id text primary key,
+            name text not null unique,
             method text not null,
             path text not null,
             created_at text not null,
