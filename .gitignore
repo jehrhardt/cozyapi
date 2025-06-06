@@ -9,3 +9,6 @@ dist
 # Python
 *.pyc
 __pycache__/
+
+# Environment for development
+.env

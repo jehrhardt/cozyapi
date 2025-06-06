@@ -20,6 +20,12 @@ uv sync
 
 ## Usage
 
+Add a `.env` file with development config:
+
+```
+DATABASE_FILE=~/config/dev.cozyapi/data.db
+```
+
 Run the application locally:
 
 ```bash

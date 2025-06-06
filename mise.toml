@@ -1,6 +1,9 @@
 [tools]
 node = "lts"
 
+[env]
+_.file = '.env'
+
 [tasks."dev:app"]
 description = "Start the application in development mode"
 run = "npm run tauri dev"
