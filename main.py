@@ -13,7 +13,7 @@ import logging
 import requests
 import json
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger("cozyapi")
 
 db_file = os.getenv("DATABASE_FILE", "data.db")
@@ -54,6 +54,58 @@ def list_endpoints() -> str:
     except Exception as e:
         logger.error(f"Database error executing query: {e}")
         raise
+
+
+# Add a tool to add an endpoint to the database
+@mcp.tool()
+def add_endpoint(name: str, method: str, path: str) -> str:
+    """Add a new API endpoint to the database.
+
+    Args:
+        name: The name of the endpoint
+        method: HTTP method (GET, POST, PUT, DELETE, etc.)
+        path: The URL path for the endpoint (can include domain, which will be stripped)
+
+    Returns:
+        Success message or error description
+    """
+    try:
+        import uuid
+        from datetime import datetime
+        from urllib.parse import urlparse
+
+        # Generate ID and timestamps
+        endpoint_id = str(uuid.uuid4())
+        now = datetime.now().isoformat()
+
+        # Extract path from URL if full URL is provided
+        if path.startswith(('http://', 'https://')):
+            parsed_url = urlparse(path)
+            clean_path = parsed_url.path
+        else:
+            clean_path = path
+
+        # Ensure path starts with /
+        if not clean_path.startswith('/'):
+            clean_path = '/' + clean_path
+
+        with closing(sqlite3.connect(db_file)) as conn:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute(
+                    "insert into endpoints (id, name, method, path, created_at, updated_at) values (?, ?, ?, ?, ?, ?)",
+                    (endpoint_id, name, method.upper(), clean_path, now, now),
+                )
+                conn.commit()
+
+        return f"Successfully added endpoint '{name}' ({method.upper()} {clean_path})"
+
+    except sqlite3.IntegrityError as e:
+        if "unique" in str(e).lower():
+            return f"Error: Endpoint with name '{name}' already exists"
+        return f"Database integrity error: {e}"
+    except Exception as e:
+        logger.error(f"Error adding endpoint: {e}")
+        return f"Error: {e}"
 
 
 # Add a tool to request an endpoint by name
